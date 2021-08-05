@@ -1,0 +1,19 @@
+<h4>Cotizaciones</h4>
+
+<mat-spinner *ngIf="isLoading | async"></mat-spinner>
+<table class="table" *ngIf="!(isLoading | async)">
+    <thead>
+        <tr>
+            <th>Currency</th>
+            <th>Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rate of rates | async">
+            <td>{{rate.currencyCode}}</td>
+            <td>{{rate.rate}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="update()" [disabled]="isLoading | async">Actualizar</button>

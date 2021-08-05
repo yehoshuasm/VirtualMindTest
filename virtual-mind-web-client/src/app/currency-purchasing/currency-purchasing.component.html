@@ -1,0 +1,38 @@
+<br>
+    <app-currency-exchange-rates></app-currency-exchange-rates>
+<br>
+<br>
+<br>
+<br>
+
+<form [formGroup]="currencyPurchasingOrderForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="currency-purchasing-form-field">
+        <mat-label for="userId">Id Usuario</mat-label>
+        <input matInput type="text" formControlName="userId">
+        <!-- <mat-error *ngIf="userId.hasError('required')">El Id de Usuario es requerido.</mat-error> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field class="currency-purchasing-form-field">
+        <mat-label for="currencyCode">Divisa</mat-label>
+        <input matInput type="text" formControlName="currencyCode">
+        <!-- <mat-error></mat-error> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field class="currency-purchasing-form-field">
+        <mat-label for="amount">Monto en ARS</mat-label>
+        <input matInput type="text" formControlName="amount">
+        <!-- <mat-error></mat-error> -->
+    </mat-form-field>
+    <br>
+
+    <mat-spinner [diameter]="40" *ngIf="isSubmitting"></mat-spinner>
+
+    <br>
+
+    <button type="submit" [disabled]="!currencyPurchasingOrderForm.valid || isSubmitting" class="btn btn-lg btn-primary btn-block" color="primary">Comprar</button>
+
+    <br>
+    <br>
+    <span *ngIf="isError && !isSubmitting">La compra ha sido rechazada: {{error}}</span>
+    <span *ngIf="isSubmitted && !isError && !isSubmitting">Compra realizada exitosamente.</span>
+</form>
